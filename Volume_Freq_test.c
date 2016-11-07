@@ -248,7 +248,7 @@ void ADC14_IRQHandler(void)
     if(status & ADC_INT1)
     {
         /* Store ADC14 conversion results */
-       resultsBuffer[0] = x_min+ADC14_getResult(ADC_MEM0)*x_max/16383;	// 16-7902 hz
+       resultsBuffer[0] = ADC14_getResult(ADC_MEM0);
        resultsBuffer[1] = y_min+ADC14_getResult(ADC_MEM1)*y_max/16383;	// range from 0 to 99
 
        frequency=resultsBuffer[0];
@@ -263,7 +263,7 @@ void ADC14_IRQHandler(void)
        else{
     	   MAP_Timer_A_setCompareValue(TIMER_A0_BASE,TIMER_A_CAPTURECOMPARE_REGISTER_4,0);
        }
-       AUDIO_COUNT=resultsBuffer[0];
+       AUDIO_COUNT=x_min+resultsBuffer[0]*x_max/16383;					// 200 - 2000 hz or ~ (G#3/Ab3 to B6)
 
         /* Determine if JoyStick button is pressed */
        /*

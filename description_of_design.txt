@@ -1,0 +1,23 @@
+description of your design, the code you wrote, and be sure to indicate what software libraries you used.
+Design Description
+The code utilizes the joystick to contorl the sound of the produced by the buzzer.
+The y axis will produce no sounds when pushed all the way down and max when up.
+The x axis will produce low sounds when pushed left and high sounds when pushed right.
+Note:
+	These ranges are EASILY changed in code. Lower and upper bound are defined in the code and can easily be adjusted.
+	The top button overrides the volume control and sets it to 0 to eleminate annoyance to user
+		Pressing the button again will toggle the control and return contorl to the user
+	And excel file has been included to find the relationship between inputs and frequency if one would like to adjust the ranges
+	
+Code Description
+	The Joystick acts as a potentiometer to read in user inputs as voltage. This data is converted to usable ranges.
+	The range of volumes is 0 to 99. The range of frequencies is 200 to 2000.  
+	The code utilizes interrupts and sleep conditions to save power.  
+	The following libaries were used:
+	
+	/*inclluded in MSPWARE*/
+	#include "driverlib.h"
+
+	/* Standard Includes */
+	#include <stdint.h>
+	#include <stdbool.h>
